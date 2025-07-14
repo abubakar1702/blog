@@ -9,6 +9,11 @@ urlpatterns = [
     path('blogs/filter/', views.FilteredBlogPostAPIView.as_view(), name='blog-filtered'),
     path('blogs/<int:pk>/like/', views.LikePostAPIView.as_view(), name='blog-like'),
     path('blogs/<int:pk>/bookmark/', views.BookmarkPostAPIView.as_view(), name='blog-bookmark'),
+<<<<<<< HEAD
+=======
+    path('blogs/<int:pk>/update/', views.BlogPostUpdateAPIView.as_view(), name='blog-update'),
+    path('blogs/<int:pk>/delete/', views.BlogPostDeleteAPIView.as_view(), name='blog-delete'),
+>>>>>>> c841de7 (Initial commit from second computer)
     path('user/drafts/', views.UserDraftPostsAPIView.as_view(), name='user-draft-posts'),
     path('user/bookmarks/', views.UserBookmarksAPIView.as_view(), name='user-bookmarks'),
     path('user/info/', views.UserInfoAPIView.as_view(), name='user-info'),

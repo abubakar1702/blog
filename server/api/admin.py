@@ -1,5 +1,9 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from .models import Category, BlogPost, Comment, Like, Bookmark, BlogPostView
+=======
+from .models import Category, BlogPost, Comment, Like, Bookmark
+>>>>>>> c841de7 (Initial commit from second computer)
 from users.models import User
 
 
@@ -13,10 +17,17 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
+<<<<<<< HEAD
     list_display = ['title', 'author', 'status', 'category_list', 'view_count', 'created_at']
     list_filter = ['status', 'category', 'created_at']
     search_fields = ['title', 'content']
     readonly_fields = ['slug', 'view_count', 'created_at', 'updated_at']
+=======
+    list_display = ['title', 'author', 'status', 'category_list', 'created_at']
+    list_filter = ['status', 'category', 'created_at']
+    search_fields = ['title', 'content']
+    readonly_fields = ['slug', 'created_at', 'updated_at']
+>>>>>>> c841de7 (Initial commit from second computer)
     filter_horizontal = ['category']
     
     fieldsets = (
@@ -26,10 +37,13 @@ class BlogPostAdmin(admin.ModelAdmin):
         ('Categorization', {
             'fields': ('category',),
         }),
+<<<<<<< HEAD
         ('Analytics', {
             'fields': ('view_count',),
             'classes': ('collapse',)
         }),
+=======
+>>>>>>> c841de7 (Initial commit from second computer)
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
@@ -80,6 +94,7 @@ class BookmarkAdmin(admin.ModelAdmin):
     list_display = ['post', 'user', 'created_at']
     list_filter = ['created_at']
     search_fields = ['post__title', 'user__email']
+<<<<<<< HEAD
     readonly_fields = ['created_at']
 
 
@@ -93,3 +108,6 @@ class BlogPostViewAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         # Prevent manual creation of view records
         return False
+=======
+    readonly_fields = ['created_at']
+>>>>>>> c841de7 (Initial commit from second computer)

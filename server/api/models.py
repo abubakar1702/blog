@@ -51,8 +51,11 @@ class BlogPost(models.Model):
     # Relationships
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     
+<<<<<<< HEAD
     # Analytics
     view_count = models.PositiveIntegerField(default=0)
+=======
+>>>>>>> c841de7 (Initial commit from second computer)
     
     # Timestamps
     updated_at = models.DateTimeField(auto_now=True)
@@ -65,9 +68,12 @@ class BlogPost(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post_detail', kwargs={'slug': self.slug})
 
+<<<<<<< HEAD
     def increment_view_count(self):
         self.view_count += 1
         self.save(update_fields=['view_count'])
+=======
+>>>>>>> c841de7 (Initial commit from second computer)
 
     @property
     def total_likes(self):
@@ -148,6 +154,7 @@ class Bookmark(models.Model):
         ]
 
     def __str__(self):
+<<<<<<< HEAD
         return f'Bookmark by {self.user.username} on {self.post.title}'
 
 
@@ -167,3 +174,6 @@ class BlogPostView(models.Model):
 
     def __str__(self):
         return f'View of {self.post.title} at {self.created_at}'
+=======
+        return f'Bookmark by {self.user.username} on {self.post.title}'
+>>>>>>> c841de7 (Initial commit from second computer)

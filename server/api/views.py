@@ -124,3 +124,27 @@ class UserInfoAPIView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+<<<<<<< HEAD
+=======
+
+
+class IsAuthorOrReadOnly(permissions.BasePermission):
+    """Custom permission to only allow authors of a blog post to edit it."""
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        # Write permissions are only allowed to the author of the post.
+        return obj.author == request.user
+
+class BlogPostUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer
+    permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
+
+class BlogPostDeleteAPIView(generics.DestroyAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer
+    permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
+>>>>>>> c841de7 (Initial commit from second computer)

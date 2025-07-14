@@ -4,6 +4,15 @@ import { useParams } from "react-router-dom";
 import default_pfp from "../assets/Default_pfp.jpg";
 import CommentSection from "../components/comments/CommentSection";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+<<<<<<< HEAD
+=======
+import '../style/quillContent.css'
+
+function getImageUrl(path) {
+  if (!path) return '';
+  return path.startsWith('http') ? path : `http://127.0.0.1:8000${path}`;
+}
+>>>>>>> c841de7 (Initial commit from second computer)
 
 const BlogDetails = () => {
   const { slug } = useParams();
@@ -135,19 +144,32 @@ const BlogDetails = () => {
       {/* Featured Image */}
       <div className="mb-8">
         <img
+<<<<<<< HEAD
           src={article.image}
+=======
+          src={getImageUrl(article.image)}
+>>>>>>> c841de7 (Initial commit from second computer)
           alt={article.title}
           className="w-full h-64 md:h-96 object-cover rounded-lg"
         />
       </div>
 
       {/* Article Content */}
+<<<<<<< HEAD
       <article className="prose prose-lg max-w-none mb-12">
         <div
           className="text-gray-700 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
       </article>
+=======
+      <article className="max-w-none mb-12">
+  <div
+    className="ql-editor prose prose-lg text-gray-700 leading-relaxed"
+    dangerouslySetInnerHTML={{ __html: article.content }}
+  />
+</article>
+>>>>>>> c841de7 (Initial commit from second computer)
 
       {/* Tags */}
       {article.tags && article.tags.length > 0 && (
@@ -180,9 +202,12 @@ const BlogDetails = () => {
           )}
           <span>{likeCount}</span>
         </button>
+<<<<<<< HEAD
         <div>
           <span className="ml-2">Views: {article.view_count}</span>
         </div>
+=======
+>>>>>>> c841de7 (Initial commit from second computer)
       </div>
 
       <CommentSection initialComments={article.comments || []} />

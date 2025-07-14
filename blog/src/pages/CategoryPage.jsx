@@ -60,9 +60,13 @@ const CategoryPage = () => {
                   day: "numeric",
                 })}
               </p>
+<<<<<<< HEAD
               <p className="text-sm text-gray-600 line-clamp-3">
                 {blog.content}
               </p>
+=======
+              <p className="text-sm text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content }}></p>
+>>>>>>> c841de7 (Initial commit from second computer)
             </Link>
           ))}
         </div>

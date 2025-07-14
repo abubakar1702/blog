@@ -4,7 +4,11 @@ from .models import User
 
 class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
+<<<<<<< HEAD
     list_display = ('email', 'full_name', 'is_staff', 'is_superuser', 'is_active')
+=======
+    list_display = ('id', 'email', 'full_name', 'is_staff', 'is_superuser', 'is_active')
+>>>>>>> c841de7 (Initial commit from second computer)
     search_fields = ('email', 'full_name')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

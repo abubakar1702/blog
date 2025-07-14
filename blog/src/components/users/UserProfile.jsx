@@ -2,8 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import DefaultPfp from '../../assets/Default_pfp.jpg';
+<<<<<<< HEAD
 
 const DEFAULT_PFP = DefaultPfp;
+=======
+import UserInfo from './UserInfo';
+import UserItems from './UserItems';
+import { useAuth } from '../../context/AuthContext';
+
+const DEFAULT_PFP = DefaultPfp;
+const API_USER_INFO_URL = 'http://127.0.0.1:8000/api/user/info';
+const API_UPDATE_PROFILE_URL = 'http://127.0.0.1:8000/api/auth/profile/';
+>>>>>>> c841de7 (Initial commit from second computer)
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -13,13 +23,27 @@ const UserProfile = () => {
   const [newName, setNewName] = useState('');
   const [activeTab, setActiveTab] = useState('published');
   const [isUpdating, setIsUpdating] = useState(false);
+<<<<<<< HEAD
+=======
+  const [editingPicture, setEditingPicture] = useState(false);
+  const [newPicture, setNewPicture] = useState(null);
+  const [editingPassword, setEditingPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { login } = useAuth();
+>>>>>>> c841de7 (Initial commit from second computer)
 
   useEffect(() => {
     const fetchUser = async () => {
       setLoading(true);
       setError(null);
       try {
+<<<<<<< HEAD
         const res = await axios.get('http://127.0.0.1:8000/api/user/info/', {
+=======
+        const res = await axios.get(API_USER_INFO_URL, {
+>>>>>>> c841de7 (Initial commit from second computer)
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access')}`,
           },
@@ -35,6 +59,7 @@ const UserProfile = () => {
     fetchUser();
   }, []);
 
+<<<<<<< HEAD
   const handleNameUpdate = async () => {
     if (!newName.trim() || newName === user.full_name) {
       setEditingName(false);
@@ -49,11 +74,31 @@ const UserProfile = () => {
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access')}`,
+=======
+  const handleNameUpdate = async (newName) => {
+    if (!newName.trim() || newName === user.full_name) return;
+    setIsUpdating(true);
+    setError(null);
+    try {
+      const formData = new FormData();
+      formData.append('full_name', newName);
+      const res = await axios.patch(
+        API_UPDATE_PROFILE_URL,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access')}`,
+            'Content-Type': 'multipart/form-data',
+>>>>>>> c841de7 (Initial commit from second computer)
           },
         }
       );
       setUser({ ...user, full_name: res.data.full_name });
+<<<<<<< HEAD
       setEditingName(false);
+=======
+      login({ ...user, full_name: res.data.full_name });
+>>>>>>> c841de7 (Initial commit from second computer)
     } catch (err) {
       setError('Failed to update name');
     } finally {
@@ -61,6 +106,65 @@ const UserProfile = () => {
     }
   };
 
+<<<<<<< HEAD
+=======
+  const handlePictureUpdate = async (newPicture) => {
+    if (!newPicture) return;
+    setIsUpdating(true);
+    setError(null);
+    try {
+      const formData = new FormData();
+      formData.append('profile_picture', newPicture);
+      const res = await axios.patch(
+        API_UPDATE_PROFILE_URL,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access')}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      setUser({ ...user, profile_picture: res.data.profile_picture });
+      login({ ...user, profile_picture: res.data.profile_picture });
+    } catch (err) {
+      setError('Failed to update profile picture');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handlePasswordUpdate = async (newPassword, confirmPassword) => {
+    if (!newPassword || newPassword !== confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+    setIsUpdating(true);
+    setError(null);
+    try {
+      const formData = new FormData();
+      formData.append('password', newPassword);
+      formData.append('password2', confirmPassword);
+      await axios.patch(
+        API_UPDATE_PROFILE_URL,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access')}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      setError('Password updated successfully');
+      login(user);
+    } catch (err) {
+      setError('Failed to update password');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+>>>>>>> c841de7 (Initial commit from second computer)
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -69,13 +173,18 @@ const UserProfile = () => {
     );
   }
 
+<<<<<<< HEAD
   if (error) {
+=======
+  if (error && !isUpdating) {
+>>>>>>> c841de7 (Initial commit from second computer)
     return <div className="text-center text-red-600 py-8">{error}</div>;
   }
 
   if (!user) return null;
 
   return (
+<<<<<<< HEAD
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
         <div className="relative">
@@ -287,6 +396,22 @@ const UserProfile = () => {
           </div>
         )}
       </div>
+=======
+    <div className="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg border border-gray-300 shadow-lg">
+      <UserInfo
+        user={user}
+        isUpdating={isUpdating}
+        onUpdateName={handleNameUpdate}
+        onUpdatePicture={handlePictureUpdate}
+        onUpdatePassword={handlePasswordUpdate}
+        error={error}
+      />
+      <UserItems
+        blogPosts={user.blog_posts}
+        drafts={user.drafts}
+        bookmarks={user.bookmarks}
+      />
+>>>>>>> c841de7 (Initial commit from second computer)
     </div>
   );
 };

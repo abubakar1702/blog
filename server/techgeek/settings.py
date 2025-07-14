@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'api',
     "corsheaders",
     "users",
+<<<<<<< HEAD
+=======
+    'rest_framework_simplejwt.token_blacklist',
+>>>>>>> c841de7 (Initial commit from second computer)
 ]
 
 MIDDLEWARE = [
@@ -156,8 +160,13 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+<<<<<<< HEAD
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
+=======
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ROTATE_REFRESH_TOKENS': True,
+>>>>>>> c841de7 (Initial commit from second computer)
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),

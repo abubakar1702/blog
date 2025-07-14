@@ -31,7 +31,10 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="/blog/:slug" element={<BlogDetails />} />
+<<<<<<< HEAD
         {/* Redirect /profile to /profile/:id if logged in, else to /login */}
+=======
+>>>>>>> c841de7 (Initial commit from second computer)
         <Route
           path="/profile"
           element={
@@ -44,6 +47,10 @@ function App() {
         />
         <Route path="/profile/:id" element={<UserProfile />} />
         <Route path="/write-blog" element={<WriteBlog />} />
+<<<<<<< HEAD
+=======
+        <Route path="/write-blog/:id" element={<WriteBlog />} />
+>>>>>>> c841de7 (Initial commit from second computer)
       </Route>
     </Routes>
   );

@@ -46,12 +46,20 @@ class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
         fields = [
+<<<<<<< HEAD
             'id', 'title', 'content', 'image', 'slug', 'status', 'view_count',
+=======
+            'id', 'title', 'content', 'image', 'slug', 'status',
+>>>>>>> c841de7 (Initial commit from second computer)
             'created_at', 'updated_at', 'author', 'comments', 'category', 'category_slugs',
             'total_likes', 'total_comments'
         ]
         read_only_fields = [
+<<<<<<< HEAD
             'id', 'slug', 'view_count', 'created_at', 'updated_at',
+=======
+            'id', 'slug', 'created_at', 'updated_at',
+>>>>>>> c841de7 (Initial commit from second computer)
             'author', 'comments', 'category', 'total_likes', 'total_comments'
         ]
 

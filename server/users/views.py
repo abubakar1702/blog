@@ -8,7 +8,11 @@ from .models import User
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+<<<<<<< HEAD
 from .serializers import MyTokenObtainPairSerializer
+=======
+from .serializers import MyTokenObtainPairSerializer, ProfileUpdateSerializer
+>>>>>>> c841de7 (Initial commit from second computer)
 
 class RegisterAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -42,10 +46,26 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+<<<<<<< HEAD
 
     def get_object(self):
         return self.request.user
 
+=======
+    lookup_field = 'pk'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        if pk is not None:
+            return User.objects.get(pk=pk)
+        return self.request.user
+
+    def get_serializer_class(self):
+        if self.request.method in ["PUT", "PATCH"]:
+            return ProfileUpdateSerializer
+        return UserSerializer
+
+>>>>>>> c841de7 (Initial commit from second computer)
 
 class LoginAPIView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
